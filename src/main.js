@@ -3,12 +3,14 @@ import App from './App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from "@/Pages/Home.vue";
 import CreatePost from "@/Pages/CreatePost.vue";
-// from "@/Pages/CreatePost.vue"; // CreatePost 컴포넌트 import
+import Login from "@/Pages/Login.vue";
+
 
 // 라우터 설정
 const routes = [
     { path: "/", component: Home },
-    { path: "/create-post", component: CreatePost } // 게시글 생성 페이지 경로 추가
+    { path: "/create-post", component: CreatePost },
+    { path: "/login" , component: Login }
 ];
 
 // 라우터 인스턴스 생성
