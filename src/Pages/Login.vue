@@ -1,24 +1,50 @@
 <template>
   <main class="form-signin w-100 m-auto">
-    <form>
       <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+               v-model="state.form.name">
         <label for="floatingInput">Email address</label>
       </div>
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+               v-model="state.form.password">
         <label for="floatingPassword">Password</label>
       </div>
-      <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-    </form>
+      <button class="btn btn-primary w-100 py-2" @click="submit()">Sign in</button>
   </main>
 </template>
 
 <script>
-export default {
+import axios from "axios";
+import {reactive} from "vue";
 
+export default {
+  setup() {
+    const state = reactive({
+      form: {
+        name: "",
+        password: ""
+      }
+    })
+
+    const submit = () => {
+      axios.post("/api/login", state.form).then((res) => {
+        if (res.data === 0) {
+          window.alert("로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.");
+        } else {
+          console.log("로그인 성공:", res);
+          window.alert("로그인되었습니다.");
+        }
+      }).catch((error) => {
+        console.error("로그인 요청 실패:", error);
+        window.alert("로그인 요청 처리 중 오류가 발생했습니다.");
+      });
+    }
+
+    return {state, submit}
+  }
 }
 </script>
 
