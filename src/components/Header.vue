@@ -10,9 +10,11 @@
           <div class="col-sm-4 offset-md-1 py-4">
             <h4>Menu</h4>
             <ul class="list-unstyled">
-              <li><a href="#" class="text-white"> 중고장터 </a></li>
-              <li><a href="#" class="text-white"> 수다방 </a></li>
-              <li><a href="#" class="text-white"> 출석체크 </a></li>
+              <li><router-link to="/" class="text-white"> 메인화면 </router-link></li>
+              <li>
+                <router-link to="/login" class="text-white" v-if="!$store.state.account.id"> 로그인 </router-link>
+                <a to="/login" class="text-white" @click = "logout()" v-else > 로그아웃 </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -32,8 +34,21 @@
 </template>
 
 <script>
+import router from "@/scripts/router";
+import store from "@/scripts/store";
+
 export default {
   name: 'Header',
+
+  setup() {
+    const logout = () => {
+      store.commit('setAccount', 0);
+      sessionStorage.removeItem("member_id");
+      router.push({path: "/"});
+    }
+
+    return {logout}
+  },
 }
 </script>
 <style scoped>

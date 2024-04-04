@@ -19,6 +19,8 @@
 <script>
 import axios from "axios";
 import {reactive} from "vue";
+import store from "@/scripts/store";
+import router from "@/scripts/router";
 
 export default {
   setup() {
@@ -31,15 +33,12 @@ export default {
 
     const submit = () => {
       axios.post("/api/login", state.form).then((res) => {
-        if (res.data === 0) {
-          window.alert("로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.");
-        } else {
-          console.log("로그인 성공:", res);
+          store.commit('setAccount', res.data);
+          sessionStorage.setItem("member_id",res.data);
+          router.push({path : "/"});
           window.alert("로그인되었습니다.");
-        }
-      }).catch((error) => {
-        console.error("로그인 요청 실패:", error);
-        window.alert("로그인 요청 처리 중 오류가 발생했습니다.");
+      }).catch(() => {
+        window.alert("로그인정보가 존재하지 않습니다");
       });
     }
 
