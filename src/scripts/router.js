@@ -1,11 +1,12 @@
-import Home from "@/Pages/Home.vue";
-import CreatePost from "@/Pages/CreatePost.vue";
 import Login from "@/Pages/Login.vue";
 import {createRouter, createWebHistory} from "vue-router";
+import PostCreate from "@/Pages/PostCreate.vue";
+import PostList from "@/Pages/PostList.vue";
 
 const routes = [
-    { path: "/", component: Home },
-    { path: "/create-post", component: CreatePost },
+    //{ path: "/", component: Home },
+    { path : "/post-list", component: PostList},
+    { path: "/create-post", component: PostCreate },
     { path: "/login" , component: Login }
 ];
 
