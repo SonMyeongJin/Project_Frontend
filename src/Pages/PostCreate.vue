@@ -27,6 +27,11 @@
                 <textarea class="form-control" id="postContent" rows="4" v-model="post.contents" required></textarea>
               </div>
 
+              <div class="mb-3">
+                <label for="postImage" class="form-label">이미지 업로드</label>
+                <input type="file" class="form-control" id="postImage" @change="handleImageUpload">
+              </div>
+
               <button type="submit" class="btn btn-primary"> 등록 [submit] </button>
             </form>
           </div>
@@ -46,18 +51,39 @@ export default {
         title: '',
         name: '',
         contents: '',
+        image: null,
       }
     };
   },
   methods: {
     submitPost() {
       axios.post("/api/post", this.post).then(() => {
+        this.$router.push({path: "post-list"});
         window.alert("게시글이 작성되었습니다.");
       }).catch(() => {
         window.alert("게시글 작성 실패");
       });
       console.log('게시된 포스트:', this.post);
-    }
+    },
+
+    handleImageUpload(event) {
+      const file = event.target.files[0];
+
+           const formData = new FormData();
+      formData.append('file', file);
+
+      axios.post("/api/uploadImage", formData).then(response => {
+
+        const imageUrl = response.data;
+        window.alert("이미지가 업로드되었습니다.");
+
+        this.post.image = imageUrl;
+      }).catch(() => {
+        window.alert("이미지 업로드 실패");
+      });
+    },
+
+
   }
 }
 </script>
