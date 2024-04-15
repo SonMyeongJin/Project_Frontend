@@ -3,12 +3,15 @@ import {createRouter, createWebHistory} from "vue-router";
 import PostCreate from "@/Pages/PostCreate.vue";
 import PostList from "@/Pages/PostList.vue";
 import Home from "@/Pages/Home.vue";
+import Cart from "@/Pages/Cart.vue";
 
 const routes = [
     { path: "/", component: Home },
     { path : "/post-list", component: PostList},
     { path: "/create-post", component: PostCreate },
     { path: "/login" , component: Login },
+    { path: "/cart" , component: Cart},
+
 
 ];
 
