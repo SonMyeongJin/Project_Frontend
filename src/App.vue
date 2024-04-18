@@ -27,7 +27,7 @@ export default {
         if (data) {
           store.commit("setAccount", data);
         } else {
-          store.commit("setAcoount", 0);
+          store.commit("setAccount", 0);
         }
       })
     }

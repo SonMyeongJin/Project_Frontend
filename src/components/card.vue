@@ -7,7 +7,11 @@
       <p class="card-text">{{ item.title }}</p>
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
+
           <button type="button" class="btn btn-sm btn-outline-secondary">view detail</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" @click="addToCart(item.id)">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          </button>
         </div>
 
         <small class="text-body-secondary">{{item.name}}</small>
@@ -18,11 +22,22 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Card",
   props:{
     item : Object
-  }
+  },
+  setup() {
+    const addToCart = (itemId) => {
+      axios.post(`/api/cart/items/${itemId}`).then(() => {
+        console.log("성공");
+      });
+    };
+
+    return {addToCart}
+  },
 }
 
 </script>

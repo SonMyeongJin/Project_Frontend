@@ -11,7 +11,7 @@
           </div>
           <h3 class="fs-2 text-body-emphasis"> 게시판 목록 [ Post List ]</h3>
           <p>[예정]최신글 보이게 설정하기 <br> 1. 최신글 <br> 2. 2번째최신글<br> 3. 3번째최신글</p>
-          <a href="#" class="icon-link">
+          <a href="/post-list" class="icon-link">
             Go to List
             <svg class="bi"><use xlink:href="#chevron-right"/></svg>
           </a>
@@ -23,7 +23,7 @@
           </div>
           <h3 class="fs-2 text-body-emphasis"> 글쓰기 [ Posting ]</h3>
           <p>1. 이름 <br>2. 판매내용 <br>3. 물품 사진  <br></p>
-          <a href="#" class="icon-link">
+          <a href="create-post" class="icon-link">
             Go to Posting
             <svg class="bi"><use xlink:href="#chevron-right"/></svg>
           </a>
@@ -57,7 +57,7 @@
           <div>
             <h3 class="fs-2 text-body-emphasis">[예정] 개인정보</h3>
             <p>1. 이름<br>2. 이메일<br>3. 전화번호<br></p>
-            <a href="#" class="btn btn-primary">
+            <a href="/login" class="btn btn-primary">
               로그인
             </a>
           </div>
