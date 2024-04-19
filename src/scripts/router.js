@@ -4,6 +4,7 @@ import PostCreate from "@/Pages/PostCreate.vue";
 import PostList from "@/Pages/PostList.vue";
 import Home from "@/Pages/Home.vue";
 import Cart from "@/Pages/Cart.vue";
+import modal from "@/components/modal.vue";
 
 const routes = [
     { path: "/", component: Home },
@@ -11,6 +12,7 @@ const routes = [
     { path: "/create-post", component: PostCreate },
     { path: "/login" , component: Login },
     { path: "/cart" , component: Cart},
+    { path: "/modal" , component: modal},
 
 
 ];

@@ -8,7 +8,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <div class="btn-group">
 
-          <button type="button" class="btn btn-sm btn-outline-secondary">view detail</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" @click="viewDetail">view detail</button>
           <button type="button" class="btn btn-sm btn-outline-secondary" @click="addToCart(item.id)">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
           </button>
@@ -38,6 +38,11 @@ export default {
 
     return {addToCart}
   },
+  methods: {
+    viewDetail() {
+      this.$emit('view-detail', this.item)
+    }
+  }
 }
 
 </script>

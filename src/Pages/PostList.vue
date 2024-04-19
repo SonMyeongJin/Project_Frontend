@@ -13,12 +13,13 @@
       </div>
     </section>
 
+    <Modal :item="selectedItem" :visible="showModal" @close="closeModal" />
     <div class="album py-5 bg-body-tertiary">
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
           <div class="col" v-for= "(item, index) in state.items" :key="index">
-            <Card :item="item"/>
+            <Card :item="item" @view-detail="handleViewDetail" />
           </div>
 
         </div>
@@ -30,22 +31,36 @@
 
 <script>
 import Card from "@/components/card.vue";
+import Modal from "@/components/modal.vue";
 import axios from "axios";
-import {reactive} from "vue";
+import {reactive,ref} from "vue";
 
 export default {
   name: "Home",
-  components: {Card},
+  components: {Card, Modal},
   setup() {
     const state = reactive({
       items : []
     })
+    const showModal = ref(false);
+    const selectedItem = ref(null);
+
+    function handleViewDetail(item) {
+
+      selectedItem.value = item;
+      showModal.value = true;
+
+    }
+
+    function closeModal() {
+      showModal.value = false;
+    }
 
     axios.get("/api/items").then((res) => {
       state.items = res.data;
     })
 
-    return {state}
+    return {state, showModal, selectedItem, handleViewDetail, closeModal}
   }
 }
 </script>
